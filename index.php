@@ -24,8 +24,6 @@ $sdd_db_pass='7766421';// пароль доступа к базе данных
 $q=mysql_query('SELECT * FROM `messages`');// делаем выборку из таблицы
 while($row=mysql_fetch_array($q))// берем результаты из каждой строки
 {
-//$r=($row['message']);
-//var_dump($r);
 	if(strlen($row['message'])>70)
 	{
 		echo '<b>'.$row['title'].'</b><br>';
