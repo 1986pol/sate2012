@@ -73,7 +73,7 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 					mysql_query($query, $link);
 					// Закрываем соединение
 					mysql_close($link);
-					header("Location: gbook.php");
+					header("Location: index.php");
 					}
 					}
 				}
