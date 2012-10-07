@@ -45,7 +45,7 @@ if (empty($login) or empty($password)) //если пользователь не 
     if ($myrow['password']==$password) 
 	{
 	$_SESSION['page'] = "a";
-	header("Location: gbook.php");
+	header("Location: index.php");
 	die();
 	/*echo "<html>
 	<br>
