@@ -1,4 +1,5 @@
 ﻿<?php 
+//pol
 session_start();
 if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 
