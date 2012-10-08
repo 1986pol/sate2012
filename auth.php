@@ -1,7 +1,7 @@
 ﻿<?
 session_start();
 	echo "<html>
-	<br><br><br><br><br><br><br>
+	<br><br><br><br><br><br>
 	<form action='' method=POST>
 	<center><table style=background-color:grey >
 	<tr>

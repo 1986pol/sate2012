@@ -20,7 +20,7 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 	</html>";
 	if(preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $_POST['username']))
 	{
-		echo "<p style='color:red;text-align:center'> Entered an invalid character in the 'Your name'</p>";
+		echo "<p style='color:red;text-align:center'> An invalid character 'Your name'</p>";
 	}
 	else
 	{
@@ -32,7 +32,7 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 		{	
 			if(preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $_POST['title']))
 			{
-				echo "<p style='color:red;text-align:center'> Entered an invalid character in the 'Topicа'</p>";
+				echo "<p style='color:red;text-align:center'> An invalid character in the 'Topicа'</p>";
 			}
 			else
 			{
@@ -44,7 +44,7 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 				{
 					if(preg_match("/<|>|#|\[|\]|\*/", $_POST['msg'])) 
 					{
-					echo "<p style='color:red;text-align:center'> Entered an invalid character in the message</p>";
+					echo "<p style='color:red;text-align:center'> An invalid character in the message</p>";
 					} 
 					else 
 					{
