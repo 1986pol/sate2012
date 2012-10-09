@@ -13,11 +13,16 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 	<tr><td>Messages:<br>
 	<td><textarea name=msg rows=4 cols=40></textarea><br></td>
 	</table>
-	<input type=submit name=addok value='Добавть запись'>
-	<input type=reset name=reset value='Отмена'>
+	<input type=submit style='width:120px; height:30px' name=addok value='Add message'>
+	<input type=reset style='width:120px; height:30px' name=reset value='Reset'>
+	<input type=submit style='width:120px; height:30px' name=back value='Back'>
 	</form>
 	</center>
 	</html>";
+	if(isset($_POST['back']))
+	{
+    header("Location: index.php");
+	}
 	if(preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $_POST['username']))
 	{
 		echo "<p style='color:red;text-align:center'> An invalid character 'Your name'</p>";
@@ -32,7 +37,7 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 		{	
 			if(preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $_POST['title']))
 			{
-				echo "<p style='color:red;text-align:center'> An invalid character in the 'Topicа'</p>";
+			echo "<p style='color:red;text-align:center'> An invalid character in the 'Topicа'</p>";
 			}
 			else
 			{
@@ -58,7 +63,6 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 					$title=($_POST['title']);
 					$msg=($_POST['msg']);
 					$time=date("d.m.Y H:i");
-					var_dump($msg);
 					// Данные для mysql сервера
 					$dbhost = "localhost"; 
 					$dbuser = "root"; 

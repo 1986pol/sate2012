@@ -37,35 +37,30 @@
 			$pas = ($_POST['password']);
 			$Cpas = ($_POST['Cpassword']);
 			$log =($_POST['login']);
+			$time=date("d.m.Y H:i");
+			
 			if ($Cpas != $pas)//проверяем правильность подтверждения пароля
 			{
-			echo"passwords do not match<br>";
+				echo"passwords do not match<br>";
 			} 
 			else
 			{
-				$dbhost = "localhost"; // Хост
-				$dbuser = "root"; // Имя пользователя
-				$dbpassword = "7766421"; // Пароль
-				$dbname = "test"; // Имя базы данных
-				$link = mysql_connect($dbhost, $dbuser, $dbpassword);// Подключаемся к mysql серверу
-				mysql_select_db($dbname, $link);// Выбираем нашу базу данных
-				$q=mysql_query('SELECT*FROM `users`');
-				while($row=mysql_fetch_array($q))
+				$db = mysql_connect ("localhost","root","7766421");
+				mysql_select_db ("test",$db);
+				$q = mysql_query("SELECT * FROM users WHERE login='$log'",$db); //извлекаем из базы все данные о пользователе с введенным логином
+				$w = mysql_query("SELECT * FROM users WHERE email='$email'",$db);
+				$myrow = mysql_fetch_array($q);
+				$myr=mysql_fetch_array($w);
+				if(empty($myrow['password']) && empty($myr['password']))
 				{
-					if($log != $row['login'])
-					{
-					mysql_select_db($dbname, $link);
-					$query = "insert into users values('$log', '$email', '$pas')";// Добавляем запись в нашу таблицу customer
-					mysql_query($query, $link);
-					mysql_close($link);// Закрываем соединение
-					echo "ok";
-					}
-					else
-					{
-					echo "error";
-					}
+					$result2 = mysql_query ("INSERT INTO users (login, email, password, data) VALUES('$log','$email','$pas', '$time')");
+					echo "<p style='color:green;text-align:center'>registration is successful</p>";
 				}
-			}
+				else
+				{
+					echo "<p style='color:red;text-align:center'>a login or email already exists</p>";							
+				}
+			}					
 		}
 	}
 ?>

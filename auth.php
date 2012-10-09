@@ -29,9 +29,8 @@ if (empty($login) or empty($password)) //если пользователь не 
     {
      echo "You entered all the information, go back and fill in all fields!<br>";
     }
-    $db = mysql_connect ("localhost","root","7766421");
-    mysql_select_db ("test",$db);
-	
+   $db = mysql_connect ("localhost","root","7766421");
+   mysql_select_db ("test",$db);
    $q = mysql_query("SELECT * FROM users WHERE login='$login'",$db); //извлекаем из базы все данные о пользователе с введенным логином
    $myrow = mysql_fetch_array($q);
    if(empty($myrow['password']))
@@ -44,6 +43,7 @@ if (empty($login) or empty($password)) //если пользователь не 
     //если существует, то сверяем пароли
     if ($myrow['password']==$password) 
 	{
+	$_SESSION['login'] = $myrow['login'];
 	$_SESSION['page'] = "a";
 	header("Location: index.php");
 	die();

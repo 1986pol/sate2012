@@ -7,6 +7,17 @@ $sdd_db_pass='7766421';// пароль доступа к базе данных
 @mysql_select_db($sdd_db_name);// переключаемся на нужную нам базу данных
 $q=mysql_query('SELECT * FROM `messages`');// делаем выборку из таблицы
 while($row=mysql_fetch_array($q))// берем результаты из каждой строки
-	echo '<b>'.$row['title'].'</b><br><b>'.$row['message'].'</b><br>'.$row['nik'].'...'.$row['data'].'<hr>';
+echo '<b>'.$row['title'].'</b><br><b>'.$row['message'].'</b><br>'.$row['nik'].'...'.$row['data'].'<hr>';
+//кнопка возвращающая на предыдущую страницу
+echo "<html>
+	<br>
+	<form action='' method=POST>
+	<input type=submit style='width:120px; height:30px' name=back value='Back'>
+    </form><br>
+	</html>";
+	if(isset($_POST['back']))
+	{
+    header("Location: index.php");
+	}
 	
 ?>
