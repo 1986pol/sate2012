@@ -3,9 +3,7 @@
 	<br><br><br><br><br><br><br>
 	<form action='' method=POST>
 	<center><table style=background-color:#ff6f4f >
-	<tr>
-	<th colspan='2'><h2>Registration</h2></th>
-	</tr>
+	<tr><th colspan='2'><h2>Registration</h2></th></tr>
 	<tr><td>Login:</td>
 	<td><input type=text name=login size=30></td></tr>
 	<tr><td>Password:</td>
@@ -38,6 +36,7 @@
 			$Cpas = ($_POST['Cpassword']);
 			$log =($_POST['login']);
 			$time=date("d.m.Y H:i");
+			$avatar = "avatar_orig/not.jpg";
 			
 			if ($Cpas != $pas)//проверяем правильность подтверждения пароля
 			{
@@ -53,7 +52,7 @@
 				$myr=mysql_fetch_array($w);
 				if(empty($myrow['password']) && empty($myr['password']))
 				{
-					$result2 = mysql_query ("INSERT INTO users (login, email, password, data) VALUES('$log','$email','$pas', '$time')");
+					$result2 = mysql_query ("INSERT INTO users (login, email, password, data_reg, avatar, data_last, name, surname, role) VALUES('$log','$email','$pas', '$time', '$avatar', 1, 1, 1, 1)");
 					echo "<p style='color:green;text-align:center'>registration is successful</p>";
 				}
 				else

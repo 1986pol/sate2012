@@ -8,17 +8,28 @@ if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 	$myrow = mysql_fetch_array($q);
 	$total = $myrow[0];
 	echo "Total Users: $total<br><br><br>";
-	echo"<form action=eduser.php method=POST>
+	echo"<form action='' method=POST>
 	<input type=submit style='width:120px; height:30px' name=eduser value='ed user'>
 	</form>";
+	if(isset($_POST['eduser']))
+	{
+	$_SESSION['log']=$_SESSION['login'];
+    header("Location: eduser.php");
+	}
 //выводим всех пользователей
-
 	$db = mysql_connect ("localhost","root","7766421");
     mysql_select_db ("test",$db);
 	$q = mysql_query('SELECT * FROM users');
 	while($row = mysql_fetch_array($q))
 	{
-	echo "<table style=background-color:grey ><td><br>login: ".$row['login']."<br>email: ".$row['email']."<br>Data register: ".$row['data']."</td></table>";
+	$w=$row['login'];
+	echo "<br>$w<br><img src=".$row['avatar'].">
+	</b><form action='' method=POST><input type=submit name=$w value=brows></td></form><hr>";
+	if(isset($_POST["$w"]))
+	{
+	$_SESSION['log']=$w;
+    header("Location: eduser.php");
+	}
 	}
 ////кнопка завершающая сессию и кнопка возвращающая на предыдущую страницу
 echo "<html>
