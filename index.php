@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['page'] != "a")die(header("Location: auth.php"));
 if($_SESSION['role']==0)
 	{ 
-		Echo "Your username is blocked";
+		echo "Your username is blocked";
 	}
 else
 	{
@@ -44,15 +44,11 @@ else
 			{
 				header("Location: test.php");
 			}
-	//отображение сообщений из бд
-	$sdd_db_host='localhost';// ваш адрес где находится, хостится ваша база данных
-	$sdd_db_name='test';// Имя базы данных с которой вы хотите работать, так как их может быть множество
-	$sdd_db_user='root';// логин доступ к базе данных
-	$sdd_db_pass='7766421';// пароль доступа к базе данных
-	@mysql_connect($sdd_db_host,$sdd_db_user,$sdd_db_pass);// устанавливаем связь с сервером
-	@mysql_select_db($sdd_db_name);// переключаемся на нужную нам базу данных
-	$qt=mysql_query('SELECT * FROM messages');// делаем выборку из таблицы
-	while($row=mysql_fetch_array($qt))// берем результаты из каждой строки
+		//отображение сообщений из бд
+		$db = mysql_connect ("localhost","root","7766421");
+		mysql_select_db ("test",$db);
+		$qt=mysql_query('SELECT * FROM messages');
+		while($row=mysql_fetch_array($qt))
 		{
 			if(strlen($row['message'])>70)
 			{
